@@ -2,6 +2,7 @@ package student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 
@@ -211,6 +212,8 @@ public class StudentService {
 	}
 	
 	public void rank() {
+		
+	
 			for(int i = 0 ; i < sortedStudents.size() - 1 ; i++) {
 				int idx =  i;
 				for(int j = 1 + i ; j < sortedStudents.size() ; j++) {		//비교 대상
@@ -222,7 +225,15 @@ public class StudentService {
 			sortedStudents.set(i, sortedStudents.get(idx));		//set
 			sortedStudents.set(idx, tmp);
 		
-//			System.out.println(i + 1 + "회차 : " + Arrays.toString(students));
+			//comparator 정의하기
+			Comparator<Student> comp = new Comparator<Student>() {
+				
+				@Override
+				public int compare(Student o1, Student o2) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			};
 			}
 		}
 	

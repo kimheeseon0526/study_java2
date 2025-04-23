@@ -96,7 +96,8 @@ public class Student {
 	 public String toString() {
 		return String.format("%5d %5s %5d  %5d %5d %5.2f %5d", no, name, kor, eng, mat, avg(), total()) ;
 	}
-	
-
-	
+	 
 }
+
+
+
