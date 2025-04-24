@@ -2,8 +2,10 @@ package student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 
 
@@ -18,15 +20,25 @@ public class StudentService {
 	private int count;
 	
 	{
-		students.add(new Student("개똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student("새똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student("말똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student("개새똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
+//		students.add(Student.builder().no(1).name("개똥이").kor(randomScore()).eng(randomScore()).mat(randomScore()).build());
+		students.add(new Student(2, "새똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(3, "말똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(4, "개새똥이", randomScore(), randomScore(), randomScore()));
 		
 		sortedStudents = new ArrayList<Student>(students); //값이 변할 때 -> 등록, 수정, 삭제시	
 		rank();	//복제하고 정렬해라
 	
 	}
+	
+	private static StudentService studentService = new StudentService();
+	private StudentService() {
+		
+	}
+	public static StudentService getInstance() {
+		return studentService;
+	}
+	
 	//랜덤값 배정하는 것
 	public int randomScore() {	
 		return (int)(Math.random() * 41 + 60);
@@ -211,30 +223,28 @@ public class StudentService {
 		System.out.println("전체 평균 : " + avgAll);
 	}
 	
-	public void rank() {
+	public void rank()  {
 		
-	
-			for(int i = 0 ; i < sortedStudents.size() - 1 ; i++) {
-				int idx =  i;
-				for(int j = 1 + i ; j < sortedStudents.size() ; j++) {		//비교 대상
-					if(sortedStudents.get(idx).total() < sortedStudents.get(j).total()) {
-						idx = j;
-					}
-				}
-			Student tmp = sortedStudents.get(i);		//최소값 찾아서 두 자리의 idx를 바꾼다
-			sortedStudents.set(i, sortedStudents.get(idx));		//set
-			sortedStudents.set(idx, tmp);
+		//1.List.sort()
+		//2.TreeSet()
+		//3.Collection;
 		
-			//comparator 정의하기
-			Comparator<Student> comp = new Comparator<Student>() {
-				
-				@Override
-				public int compare(Student o1, Student o2) {
-					// TODO Auto-generated method stub
-					return 0;
-				}
-			};
-			}
+		//1번
+//		sortedStudents.sort(new Comparator<Student>() {
+//
+//			@Override
+//			public int compare(Student o1, Student o2) {
+//				// TODO Auto-generated method stub
+//				return Double.compare(o2.avg() - o1.avg());
+//			}
+//		
+//		});
+		//2번
+//		 sortedStudents = new ArrayList<>(new TreeSet<>(sortedStudents));
+		
+		//3번
+		Collections.sort(sortedStudents, (o1 , o2) -> o2.total() - o1.total());
+		
 		}
 	
 		
