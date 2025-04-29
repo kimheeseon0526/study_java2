@@ -17,7 +17,7 @@
     1. Global 세팅을 위한 코드
     ```
     git config --global user.name "kimheeseon0526"
-    git config --global user.email " xuan6.6j@gmail.com"
+    git config --global user.email "xuan6.6j@gmail.com"
     ```
 
     2. clone을 통한 워크스페이스 지정
